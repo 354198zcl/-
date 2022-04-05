@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+    void menu()
+    {
+            printf("\t\t**************************\n");
+            printf("\t\t**1.play          0.exit**\n");
+            printf("\t\t**************************\n");
+    }
+        void game()
+        {    int guess=0;
+            //1.生成一个随机数
+            int ret=0;
+
+         ret=rand()%100+1;  //生成的数字是在0-100之间；
+        //生成随机数；需在库函数stdlib.h下使用,范围是0——32767，
+           // 2.猜数字
+            while(1)
+            {
+                printf("请猜数字：");
+                scanf("%d",&guess);
+                if(guess<ret)
+                    printf("猜小了\n");
+                else if(guess>ret)
+                     printf("猜大了\n");
+                else
+                  {
+                      printf("恭喜你，猜对了！\n");
+                        break;
+                  }
+            }
+
+        }
+        int main()
+   {
+
+         //时间戳：
+          //当前计算机时间-起始计算机时间（1970.1.1.0：0：0）=（xxxxx）秒
+          //拿时间戳来设置随机生成的时间点
+          //time_t time(time_t *timer)实际上time函数是一个long形，()里必须是指针类型;
+          //time函数需定义 用time.h;
+          srand((unsigned int) time(NULL));//在使用rand函数之前必须调用sand函数生成随机起点；且里面必须是整型
+          //NULL是空指针
+          //srand 函数需放在外面，这样不用每次都调用time函数了，以免造成数字不随机
+          int input=0;
+
+        do
+        {       menu();
+                printf("请选择");
+              scanf("%d",&input);
+            switch(input)
+            {
+            case 1:
+                    game();
+                 break;
+
+                case 0:
+                    printf("\t\t退出游戏\n");
+                  break;
+                default:
+                  printf("\t\t输入错误\n");
+                   break;
+            }
+        }while(input);
+       return 0;
+    }
